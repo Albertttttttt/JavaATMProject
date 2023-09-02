@@ -6,7 +6,7 @@ import java.util.Scanner;
   public class OptionMenu  extends Account {
       Scanner userInput = new Scanner(System.in);
       // maximum of two decimal place, or if less than two, it'll replace with a zero
-      DecimalFormat moneyFormat = new DecimalFormat("'$'###, ##0.00, #.00");
+      DecimalFormat moneyFormat = new DecimalFormat("'$'###, ##0.00");
 
       // A hashmap object called "data" that stores Integer keys
       //also storing records of account number to pin mapping
@@ -97,20 +97,28 @@ import java.util.Scanner;
           int selection = userInput.nextInt();
 
           switch (selection) {
-              case 1 -> System.out.println("Checking Account Balance: " +
-                      moneyFormat.format(getCheckingAccount()));
-              getAccountType();
-              //created two methods for both withdrawal and deposit of funds
-              case 2 -> getwithdrawInput();
-              getAccountType();
-              case 3 -> getDepositInput();
-              getAccountType();
-              case 4 -> System.out.println("Thank you for using this ATM!, Bye. \n")
-              default -> System.out.println("Invalid Choice");
-              getAccountType();
+              case 1 -> {
+                  System.out.println("Checking Account Balance: " +
+                          moneyFormat.format(getCheckingAccount()));
+                  getAccountType();
+                  //created two methods for both withdrawal and deposit of funds
+              }
+              case 2 -> {
+                  getCheckingWithdrawInput();
+                  getAccountType();
+              }
+              case 3 -> {
+                  getCheckingDepositInput();
+                  getAccountType();
+              }
+              case 4 -> System.out.println("Thank you for using this ATM!, Bye. \n");
+              default -> {
+                  System.out.println("Invalid Choice");
+                  getAccountType();
+              }
           }
 
-          return 0;
+         return 0;
       }
 
       public double getSavingAccount() {
@@ -125,11 +133,19 @@ import java.util.Scanner;
           switch (selection) {
               case 1 -> System.out.println("Checking Savings Account Balance" +
                       moneyFormat.format(getSavingAccount()));
-              case 2 -> getSavingWithdrawInput();
-              case 3 -> getSavingDepositInput();
-              case 4 -> System.out.println("Thank you for using this ATM!, Bye. \n")
-              default -> System.out.println("Invalid Choice");
-              getAccountType();
+              case 2 -> {
+                  getSavingWithdrawInput();
+                  getAccountType();
+              }
+              case 3 -> {
+                  getSavingDepositInput();
+                  getAccountType();
+              }
+              case 4 -> System.out.println("Thank you for using this ATM!, Bye. \n");
+              default -> {
+                  System.out.println("Invalid Choice");
+                  getAccountType();
+              }
           }
 
 
